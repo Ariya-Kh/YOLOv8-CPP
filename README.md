@@ -1,5 +1,4 @@
 # YOLOv8-CPP
-## c++ code for yolov8 detection and segmentation
 use your trained model on custom data for your task(detect/segment) for inference in cpp using libtorch or opencv.  
 the output of the code is a struct for each detected object:  
 ```
