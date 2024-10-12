@@ -388,8 +388,8 @@ cv::Mat TorchSegmentation::up_sampling(const torch::Tensor &detection_mask, int 
         else
             size = orig_size[batch_num][1];
 
-        newCol = (output_image.cols * orig_size[batch_num][1]) / size;
-        newRow = (output_image.rows * orig_size[batch_num][0]) / size;
+        int newCol = (output_image.cols * orig_size[batch_num][1]) / size;
+        int newRow = (output_image.rows * orig_size[batch_num][0]) / size;
 
         cv::Rect roi(left_pad, top_pad, newCol, newRow);
 

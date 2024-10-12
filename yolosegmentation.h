@@ -45,10 +45,8 @@ public:
     virtual cv::Mat                  up_sampling(const Type &detection_mask, int batch_num) = 0;
     Task task;
 protected:
-    int                          newCol;
-    int                          newRow;
-    bool                         add_pad = false; // do not change !!!
-    int                          num_of_classes;
+    bool add_pad = false; // do not change !!!
+    int num_of_classes;
     std::vector<FilteredOutputs> filtered_outputs;
     float general_threshold{0.5}; // for finding bboxes with high confidences and eliminating boxes with low confidences
                                   // to reduce NMS elapsed time
