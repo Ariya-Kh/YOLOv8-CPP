@@ -241,14 +241,19 @@ std::vector<torch::Tensor> TorchSegmentation::inference(torch::Tensor &model_inp
     iValue.emplace_back(model_input);
     torch::jit::IValue output  = module.forward(iValue);
 
-    auto               output0 = output.toTuple()->elements()[0].toTensor();
-    outputs.push_back(output0);
+   if(task == Task::Segment){
+        auto output0 = output.toTuple()->elements()[0].toTensor();
+        std::cout << output0.size(0) << output0.size(1) << output0.size(2) << std::endl;
+        auto output1 = output.toTuple()->elements()[1].toTensor();
 
-    if(task == Task::Segment){
-        auto               output1 = output.toTuple()->elements()[1].toTensor();
+        outputs.push_back(output0);
         outputs.push_back(output1);
     }
-
+    else if(task == Task::Detect){
+        auto output0 = output.toTensor();
+        std::cout << output0.size(0) << output0.size(1) << output0.size(2) << std::endl;
+        outputs.push_back(output0);
+    }
 
     return outputs;
 }
